@@ -1,0 +1,22 @@
+.container {
+  width: 100%;
+  /* border-style: dashed; */
+  border: 1px solid #ececec;
+  padding: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.box {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%);
+  z-index: 1;
+  height: 100%;
+}
+
+.imageContainer {
+  /* height: fit-content; */
+  /* padding: 1rem 0; */
+}

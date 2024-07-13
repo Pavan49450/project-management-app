@@ -1,0 +1,80 @@
+.customDropdown {
+  position: relative;
+  /* max-width: 400px; */
+  width: 100%;
+  min-width: 150px;
+  position: relative;
+}
+
+.selectedOption {
+  border: 1px solid var(--primary);
+  background-color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 0.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  padding-top: 0.75rem;
+  padding-left: 0.5rem;
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.placeholder {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 6px;
+  cursor: text;
+}
+
+.transition {
+  position: absolute;
+  display: flex;
+  transition: all 0.3s ease;
+  font-size: 0.7rem;
+  top: 0;
+}
+
+.arrowContainer {
+  width: 2rem;
+  position: absolute !important;
+  right: 0;
+  height: auto;
+  bottom: 4px;
+}
+
+.options {
+  position: absolute;
+  top: calc(100% - 22px);
+  left: 0;
+  width: 100%;
+  background-color: var(--white);
+  border: 1px solid var(--primary);
+  border-top: none;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  z-index: -10;
+  transform: translateY(-50px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.optionsActive {
+  opacity: 1;
+  z-index: 1;
+  transform: translateY(0);
+}
+
+.options li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.options li:hover {
+  background-color: #f0f0f0;
+  color: var(--primary);
+}

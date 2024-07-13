@@ -1,0 +1,27 @@
+.loadingBar {
+  width: 100%;
+  min-width: 100px;
+  height: 25px;
+  background-color: #f0f0f0;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 1rem 0;
+  position: relative;
+}
+
+.progress {
+  color: white;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%);
+}
+
+@keyframes progressAnimation {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
