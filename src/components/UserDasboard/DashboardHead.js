@@ -1,18 +1,29 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../../ui/Button/Button";
-
+import Cookies from "universal-cookie";
+import { useEffect } from "react";
+import { startTour } from "./UserTour";
 const DashboardHead = ({
   searchTerm,
   handleSearch,
   sortOrder,
   handleSort,
   resetSearch,
+  title,
 }) => {
   const navigate = useNavigate();
+
+  const cookie = new Cookies();
+
   return (
     <div className="flex justify-between items-center pb-4  bg-white rounded-lg p-4 mb-4">
       <div className="flex gap-4 items-center">
-        <h1 className="text-2xl font-semibold text-gray-700">Projects</h1>
+        <h1
+          id="dashboard-title"
+          className="text-2xl font-semibold text-gray-700"
+        >
+          {title ? title : "Projects"}
+        </h1>
         <div className=" flex gap-4 items-center">
           <input
             type="text"
@@ -32,14 +43,17 @@ const DashboardHead = ({
           <Button onClick={resetSearch}>clear</Button>
         </div>
       </div>
-      <button
-        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        onClick={() => {
-          navigate("/create-project");
-        }}
-      >
-        + Create New
-      </button>
+      {cookie.get("isAdmin") ? null : (
+        <button
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          onClick={() => {
+            navigate("/create-project");
+          }}
+          id="create-project-btn"
+        >
+          + Create New
+        </button>
+      )}
     </div>
   );
 };

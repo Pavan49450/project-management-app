@@ -3,8 +3,9 @@ import { getUserDetailsAPI } from "../../../api/user/userDetails";
 import CustomImage from "../../../ui/Image/Image";
 import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
+import { startTour } from "../UserTour";
 
-const UserDashboardHeader = () => {
+const UserDashboardHeader = ({ runTourWithAllElements }) => {
   const [userDetails, setUserDetails] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate(); // For navigation
@@ -14,7 +15,7 @@ const UserDashboardHeader = () => {
       try {
         const result = await getUserDetailsAPI();
         setUserDetails(result);
-        console.log(result);
+        // console.log(result);
       } catch (error) {
         console.error(error.message);
       }
@@ -48,7 +49,22 @@ const UserDashboardHeader = () => {
         <div>
           {userDetails && (
             <div className="flex gap-4 items-end font-semibold relative">
-              <span>Learning Center</span>
+              <button
+                className="ml-4 bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded"
+                onClick={runTourWithAllElements}
+                id="user-tour-btn" // Ensure this ID matches
+              >
+                Take Tour
+              </button>
+
+              <div className="flex gap-2 items-end">
+                <img
+                  src={require(`../../../assets/icons/learningCenter.gif`)}
+                  alt="Learning Center"
+                  className="w-8 hidden sm:block"
+                />
+                <span className="hidden sm:block">Learning Center</span>
+              </div>
               <div className="flex flex-col">
                 <span className="text-gray-700 text-sm text-end">Hello! </span>
                 <span className="text-gray-700">{userDetails.name}</span>

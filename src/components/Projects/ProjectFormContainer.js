@@ -10,6 +10,8 @@ import ProjectHead from "./ProjectHead";
 import { editProjectWithUserId } from "../../api/projects/editProjectWithUserId";
 import { createProject } from "../../api/projects/createProject";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import SuccessMessage from "./SuccessMessage";
 
 const ProjectFormContainer = ({ project }) => {
   const cookie = new Cookies();
@@ -42,14 +44,13 @@ const ProjectFormContainer = ({ project }) => {
         soilLayers: soilLayers,
       },
     };
-    console.log(body);
 
     const projectApi = async () => {
       try {
         const result = project
           ? await editProjectWithUserId(project._id, body)
           : await createProject(body);
-        console.log(result);
+        // console.log(result);
 
         navigate("/user-dashboard");
       } catch (error) {
@@ -60,33 +61,44 @@ const ProjectFormContainer = ({ project }) => {
     projectApi();
   };
 
+  const [successMessage, setSuccessMessage] = useState("");
+
   return (
-    <div
-      className="rounded-lg shadow-lg p-4 pt-6 bg-white mt-4 h-full"
-      style={{ maxHeight: "600px", height: "600px" }}
-    >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-full items-center">
-        <div className="h-full flex flex-col w-full">
-          <ProjectHead projectNameInput={projectNameInput} />
-          <ProjectForm project={project} onSubmit={HandleFormSubmit} />
-        </div>
-        <div>
-          <CustomFileUploader
-            onChange={(file) => imageInput.AssignValue(file)}
-            buttonText="Upload File"
-            acceptedFileType={[
-              "image/jpeg",
-              "image/png",
-              "application/pdf",
-              "application/msword",
-            ]}
-            borderColor="#ff6501"
-            height="h-96" // Example class for height from Tailwind CSS
-            colorTheme="#ececec"
-          />
+    <>
+      <SuccessMessage
+        successMessage={successMessage}
+        setSuccessMessage={setSuccessMessage}
+      />
+      <div
+        className="rounded-lg shadow-lg p-4 pt-6 bg-white mt-4 h-full"
+        style={{ maxHeight: "600px", height: "600px" }}
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-full items-center">
+          <div className="h-full flex flex-col w-full">
+            <ProjectHead
+              projectNameInput={projectNameInput}
+              setSuccessMessage={setSuccessMessage}
+            />
+            <ProjectForm project={project} onSubmit={HandleFormSubmit} />
+          </div>
+          <div>
+            <CustomFileUploader
+              onChange={(file) => imageInput.AssignValue(file)}
+              buttonText="Upload File"
+              acceptedFileType={[
+                "image/jpeg",
+                "image/png",
+                "application/pdf",
+                "application/msword",
+              ]}
+              borderColor="#ff6501"
+              height="h-96" // Example class for height from Tailwind CSS
+              colorTheme="#ececec"
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

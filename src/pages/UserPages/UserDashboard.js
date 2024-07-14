@@ -5,6 +5,7 @@ import UserDashboardHeader from "../../components/UserDasboard/Layout/Header";
 import { getProjectsAPI } from "../../api/projects/getProjectsAPI";
 import usePagination from "../../hooks/use-Pagination";
 import Pagination from "../../ui/Pagination/Pagination";
+import { startTour } from "../../components/UserDasboard/UserTour";
 
 const UserDashboard = () => {
   const [projects, setProjects] = useState([]);
@@ -15,7 +16,7 @@ const UserDashboard = () => {
     try {
       const result = await getProjectsAPI();
       setProjects(result);
-      console.log(result);
+      // console.log(result);
     } catch (error) {
       console.error(error.message);
     }
@@ -58,10 +59,32 @@ const UserDashboard = () => {
       items: sortedProjects,
       itemsPerPage: 6,
     });
+  const clickOptionsButton = () => {
+    document.getElementById("project-options-start").click(); // Corrected
+  };
+
+  const runTourWithAllElements = () => {
+    setTimeout(() => {
+      if (projects) {
+        // console.log("opened");
+
+        clickOptionsButton();
+      }
+    }, [1000]);
+    setTimeout(() => {
+      if (projects) {
+        startTour();
+      }
+    }, [1000]);
+  };
+
+  useEffect(() => {
+    runTourWithAllElements();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <UserDashboardHeader />
+      <UserDashboardHeader runTourWithAllElements={runTourWithAllElements} />
       <div className="max-w-7xl mx-auto p-4">
         <DashboardHead
           searchTerm={searchTerm}

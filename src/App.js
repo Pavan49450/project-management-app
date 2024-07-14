@@ -1,8 +1,4 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-  useNavigate,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
@@ -11,6 +7,9 @@ import Login from "./pages/Login/Login";
 import AdminDashboard from "./pages/AdminPages/AdminDashboard";
 import EditProject from "./pages/UserPages/EditProject";
 import NewProject from "./pages/UserPages/NewProject";
+import UsersPage from "./pages/AdminPages/Users";
+import AdminProjectsList from "./pages/AdminPages/ProjectList";
+import CheckoutPage from "./pages/AdminPages/CheckoutPage";
 
 const cookies = new Cookies();
 
@@ -54,8 +53,16 @@ function App() {
       element: token && isAdmin ? <AdminDashboard /> : <ErrorPage />,
     },
     {
-      path: "project-list",
-      element: token && isAdmin ? <AdminDashboard /> : <ErrorPage />,
+      path: "/projects-list",
+      element: token && isAdmin ? <AdminProjectsList /> : <ErrorPage />,
+    },
+    {
+      path: "/users",
+      element: token && isAdmin ? <UsersPage /> : <ErrorPage />,
+    },
+    {
+      path: "/checkout",
+      element: token && isAdmin ? <CheckoutPage /> : <ErrorPage />,
     },
   ]);
 

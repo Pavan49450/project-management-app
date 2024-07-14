@@ -54,14 +54,14 @@ const ProjectForm = ({ project, onSubmit }) => {
   );
 
   const handleSubmit = () => {
-    console.log({
-      description: descriptionInput.value,
-      createdBy: createdByInput,
-      createdOn: createdOnInput.value,
-      start: startInput.value,
-      end: endInput.value,
-      soilLayers: soilLayers,
-    });
+    // console.log({
+    //   description: descriptionInput.value,
+    //   createdBy: createdByInput,
+    //   createdOn: createdOnInput.value,
+    //   start: startInput.value,
+    //   end: endInput.value,
+    //   soilLayers: soilLayers,
+    // });
     onSubmit(
       descriptionInput.value,
       createdByInput.value,

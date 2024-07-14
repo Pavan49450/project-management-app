@@ -160,9 +160,9 @@ const ContentComponent = ({
             />
           ) : (
             <img
-              src={`/assets/icons/${
+              src={require(`../../assets/icons/${
                 fileName ? "fileReplaceIcon.png" : "fileUploaderIcon.png"
-              }`}
+              }`)}
               alt=""
               width={60}
               height={60}
