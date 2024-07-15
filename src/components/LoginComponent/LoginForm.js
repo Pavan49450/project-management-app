@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "../../ui/Button/Button";
 import InputWithInvalidText from "../../ui/Input/InputWithInvalidText";
+import { CircularProgress } from "@material-ui/core";
 
 const LoginForm = ({
   emailInput,
@@ -8,6 +9,7 @@ const LoginForm = ({
   onSubmit,
   isAdmin,
   setIsAdmin,
+  isLoading,
 }) => {
   const [formIsValid, setFormIsValid] = useState(false);
 
@@ -20,8 +22,10 @@ const LoginForm = ({
   };
 
   return (
-    <div className="w-full max-w-lg mt-44 flex flex-col gap-4 p-4">
-      <h2 className="text-5xl font-bold text-center mb-8">Sign in</h2>
+    <div className="w-full max-w-lg justify-center h-full flex flex-col gap-4 sm:p-4 p-0">
+      <h2 className="text-5xl font-bold text-center mb-8 text-gray-500">
+        Sign in
+      </h2>
       <p className="text-gray-400 text-center mb-4 text-xl">
         Please login to your account
       </p>
@@ -57,8 +61,15 @@ const LoginForm = ({
           onSubmit(emailInput.value, passwordInput.value, isAdmin);
         }}
         disabled={!formIsValid}
+        className={"h-12 text-xl"}
       >
-        Login
+        <div>
+          {isLoading ? (
+            <CircularProgress color={"white"} />
+          ) : (
+            <span>Login</span>
+          )}
+        </div>
       </Button>
     </div>
   );

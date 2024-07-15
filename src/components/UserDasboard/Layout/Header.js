@@ -43,12 +43,17 @@ const UserDashboardHeader = ({ runTourWithAllElements }) => {
   return (
     <header className="bg-white  w-full p-2 mb-8 items-end relative ">
       <div className="flex justify-between max-w-7xl mx-auto">
-        <div>
+        <div
+          className="cursor-pointer"
+          onClick={() => {
+            navigate("/user-dashboard");
+          }}
+        >
           <h1 className="text-4xl ml-4">LOGO</h1>
         </div>
         <div>
           {userDetails && (
-            <div className="flex gap-4 items-end font-semibold relative">
+            <div className="flex gap-4 sm:items-end items-center font-semibold relative">
               <button
                 className="ml-4 bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded"
                 onClick={runTourWithAllElements}
@@ -57,15 +62,15 @@ const UserDashboardHeader = ({ runTourWithAllElements }) => {
                 Take Tour
               </button>
 
-              <div className="flex gap-2 items-end">
+              <div className="flex gap-2 sm:items-end items-center">
                 <img
                   src={require(`../../../assets/icons/learningCenter.gif`)}
                   alt="Learning Center"
-                  className="w-8 hidden sm:block"
+                  className="w-8"
                 />
                 <span className="hidden sm:block">Learning Center</span>
               </div>
-              <div className="flex flex-col">
+              <div className="flex-col sm:flex hidden">
                 <span className="text-gray-700 text-sm text-end">Hello! </span>
                 <span className="text-gray-700">{userDetails.name}</span>
               </div>

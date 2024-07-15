@@ -70,10 +70,10 @@ const ProjectFormContainer = ({ project }) => {
         setSuccessMessage={setSuccessMessage}
       />
       <div
-        className="rounded-lg shadow-lg p-4 pt-6 bg-white mt-4 h-full"
-        style={{ maxHeight: "600px", height: "600px" }}
+        className="rounded-lg shadow-lg p-4 bg-white mx-2  mt-4 h-full py-6  "
+        // style={{ maxHeight: "600px", height: "600px" }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-full items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 h-full items-center">
           <div className="h-full flex flex-col w-full">
             <ProjectHead
               projectNameInput={projectNameInput}

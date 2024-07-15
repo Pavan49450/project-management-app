@@ -19,7 +19,7 @@ const ProjectHead = ({ projectNameInput, setSuccessMessage }) => {
     }
   };
   return (
-    <div className="flex gap-4 justify-between">
+    <div className="flex gap-4 justify-between sm:flex-row flex-col">
       <div className="flex items-center">
         <img
           src={require(`../../assets/icons/previousIcon_s.png`)}
@@ -36,17 +36,17 @@ const ProjectHead = ({ projectNameInput, setSuccessMessage }) => {
             onChange={(e) => {
               projectNameInput.AssignValue(e.target.value);
             }}
-            className=" ml-2 focus:outline-none font-bold text-lg w-44"
+            className=" ml-2 focus:outline-none font-bold text-lg sm:w-40 w-full"
           />
         </div>
         <img
           src={require(`../../assets/icons/edit.png`)}
           style={{ width: "30px" }} // Adjust width as needed
-          className="hover:bg-zinc-100 rounded-full p-1 transition-all object-contain cursor-pointer"
+          className="hover:bg-zinc-100 rounded-full p-1 transition-all object-contain cursor-pointer ml-3"
           alt="edit name"
         />
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-2 justify-end">
         <button className="border border-blue-500 text-blue-500 p-2 rounded hover:bg-blue-100 flex items-center justify-center w-20">
           <img
             src={require(`../../assets/icons/save.png`)}

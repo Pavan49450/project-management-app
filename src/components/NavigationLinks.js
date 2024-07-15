@@ -4,7 +4,7 @@ const { default: CustomImage } = require("../ui/Image/Image");
 const NavigationLinks = ({ navigationData }) => {
   const navigate = useNavigate();
   return (
-    <div className="flex gap-2 items-center">
+    <div className="flex gap-2 items-center ml-4">
       {navigationData.map((item, index) => (
         <div className="flex gap-2 items-center">
           <span

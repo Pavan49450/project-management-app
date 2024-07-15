@@ -27,25 +27,27 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleSubmit = async (email, password) => {
-    try {
-      const result = await loginAPI(email, password, isAdmin);
-      // console.log(result);
+    setIsLoading(true); // Start loading spinner
+    const data = await loginAPI(email, password, isAdmin);
+    console.log(data);
+    if (data.apiReturned) {
+      cookie.set("auth-token", data.result.token);
+      cookie.set("role", data.result.role);
+      cookie.set("id", data.result.id);
+      cookie.set("isAdmin", data.result.role === "admin");
+      setIsLoading(false); // Stop loading spinner after successful login or error occurred.
 
-      cookie.set("auth-token", result.token);
-      cookie.set("role", result.role);
-      cookie.set("id", result.id);
-      cookie.set("isAdmin", result.role === "admin");
-
-      if (result.role === "admin") {
+      if (data.result.role === "admin") {
         navigate("/admin-dashboard");
       } else {
         navigate("/user-dashboard");
       }
-      // Handle success (e.g., store user data, navigate to dashboard)
-    } catch (error) {
-      console.error(error.message);
-      // Handle error (e.g., show error message to user)
+    } else {
+      alert(data.errorMsg);
+      setIsLoading(false); // Stop loading spinner after successful login or error occurred.
     }
   };
 
@@ -57,6 +59,7 @@ const Login = () => {
         onSubmit={handleSubmit}
         setIsAdmin={setIsAdmin}
         isAdmin={isAdmin}
+        isLoading={isLoading}
       />
     </SignUpOrLoginContainer>
   );

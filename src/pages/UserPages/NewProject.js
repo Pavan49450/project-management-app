@@ -19,7 +19,7 @@ const NewProject = () => {
   return (
     <div className="bg-zinc-100 min-h-screen">
       <UserDashboardHeader />
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto pb-4">
         <NavigationLinks navigationData={navigationData} />
         <ProjectForm />
       </div>

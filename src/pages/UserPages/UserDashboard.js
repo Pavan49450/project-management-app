@@ -85,7 +85,7 @@ const UserDashboard = () => {
   return (
     <div className="min-h-screen bg-gray-100">
       <UserDashboardHeader runTourWithAllElements={runTourWithAllElements} />
-      <div className="max-w-7xl mx-auto p-4">
+      <div className="max-w-7xl mx-auto sm:p-4 p-2">
         <DashboardHead
           searchTerm={searchTerm}
           handleSearch={handleSearch}

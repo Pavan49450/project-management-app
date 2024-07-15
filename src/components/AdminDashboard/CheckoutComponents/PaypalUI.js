@@ -1,7 +1,7 @@
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { url } from "../../../constant";
 
-const PaypalUI = ({ initialOptions, setMessage }) => {
+const PaypalUI = ({ initialOptions, setMessage, price }) => {
   return (
     <PayPalScriptProvider options={initialOptions}>
       <PayPalButtons
@@ -22,7 +22,7 @@ const PaypalUI = ({ initialOptions, setMessage }) => {
                 },
                 body: JSON.stringify({
                   cart: {
-                    totalAmount: "10",
+                    totalAmount: price,
                   },
                 }),
               }

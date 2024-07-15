@@ -92,6 +92,7 @@ function CheckoutPage() {
               setMessage={setMessage}
               initialOptions={initialOptions}
               selectedOption={rechargeOptions[selectedOption]}
+              price={rechargeOptions[selectedOption].price}
             />
           </div>
         )}
